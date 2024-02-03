@@ -1,11 +1,11 @@
 # Fréchet Means Set Estimation via Relaxation
 
-This repository contains Python code for computing and visualizing Fréchet means sets in tropical phylogenetic trees spaces, using the relaxation approach introduced in the Bernoulli 2023 paper "Fréchet Mean Set Estimation in the Hausdorff Metric, via Relaxation", whose prepring is available [here](https://arxiv.org/abs/2212.12057).
+This repository contains Python code for computing and visualizing Fréchet means sets in tropical phylogenetic trees spaces, using the relaxation approach introduced in the Bernoulli 2023 paper "Fréchet Mean Set Estimation in the Hausdorff Metric, via Relaxation", whose preprint is available [here](https://arxiv.org/abs/2212.12057).
 
 
-The Fréchet mean is a fundamental object of study in non-Euclidean statistics, which generalizes the Euclidean notions of mean and median to general metric spaces and provides a canonical notion of central tendency for data living in general metric spaces. A major difficulty in the study and computation of Fréchet means is that in general these can be non-unique and as such is a set rather than a single point. This repository implements the procedure proposed in the paper (AdaptRelaxFerwmatWeberSet) to estimate the set of Fréchet means from samples, which instead of computing the empirical Fréchet mean set (minimizers of the Fréchet functional on the samples), computes the set of empirical near-minimizers according to some relaxation which vanishes as the number of data grows. The level of relaxation is computed adaptively so as to reach the minimum amount of relaxation that still ensures convergence (provided the data is sampled according to some i.i.d. distribution).
+The Fréchet mean is a fundamental object of study in non-Euclidean statistics, which generalizes the Euclidean notions of mean and median to general metric spaces and provides a canonical notion of central tendency for data living in general metric spaces. A major difficulty in the study and computation of Fréchet means is that in general these can be non-unique and as such is a set rather than a single point. This repository implements the procedure proposed in the paper (AdaptRelaxFermatWeberSet) to estimate the set of Fréchet means from samples, which instead of computing the empirical Fréchet mean set (minimizers of the Fréchet functional on the samples), computes the set of empirical near-minimizers according to some relaxation which vanishes as the number of data grows. The level of relaxation is computed adaptively so as to reach the minimum amount of relaxation that still ensures convergence (provided the data is sampled according to some i.i.d. distribution).
 
-This repository implements this procedure for the specific case of tropical spaces for which the Fréchet mean is generally non-unique, which can be used to model distances between phylogenetic trees. The implementation includes functions for computing obth unrelaxed Fréchet means and relaxed Fréchet means with the proposed adaptive procedure. In addition, it includes the code used to output figures from the paper using the publicly-available GI-SAID EpiFluTM data in New York state, pre-processed and cleaned as available [here](https://github.com/antheamonod/FluPCA/tree/master/Data).
+This repository implements this procedure for the specific case of tropical spaces for which the Fréchet mean is generally non-unique, which can be used to model distances between phylogenetic trees. The implementation includes functions for computing both unrelaxed Fréchet means and relaxed Fréchet means with the proposed adaptive procedure. In addition, it includes the code used to output figures from the paper using the publicly-available GI-SAID EpiFluTM data in New York state, pre-processed and cleaned as available [here](https://github.com/antheamonod/FluPCA/tree/master/Data).
 
 
 ## Dependencies
@@ -34,14 +34,14 @@ pip install numpy math scipy cvxpy pypoman itertools random time matplotlib mpl_
 
 ### Function files
 
-* `frechet_set_computation.py`: Contains functions for computing Frechet means sets and related operations.
-* `frechet_set_estimation.py`: Implements the relaxation procedure to estimate Frechet means sets from sampled data. The adative relaxation procedure proposed in the paper is coded in `adaptive_relaxation_fermat_weber_set`.
+* `frechet_set_computation.py`: Contains functions for computing Fréchet means sets and related operations.
+* `frechet_set_estimation.py`: Implements the relaxation procedure to estimate Fréchet means sets from sampled data. The adaptive relaxation procedure proposed in the paper is coded in `adaptive_relaxation_fermat_weber_set`.
 * `topology_functions.py`: Contains functions related to phylogenetic tree topologies. In particular `get_matrix_from_topology` outputs a matrix to convert lengths of inner edges of equidistant phylogenetic trees to leaf distance matrices, and `intersection_with_topology` Computes the relaxed Fréchet mean set of a sample of phylogenetic trees intersected with a specific tree topology.
 * `read_tree_data.py`: Contains a function to read tree data from Newick files.
 
 ### Plotting files
 
-* `phylogenetic_frechet_set_plots.py`: Contains plotting functions to visualize the relaxed Fréchet means set of equidistant phylogenetic trees. In particular `compare_relaxed_and_unrelaxed_frechet_sets` compares unrelaxed and adaptivele-relaxed Fréchet means set estimators by plotting their intersection on each represented topology space. We recall that for N leaves, the distance matrix lies in a N*(N-1)/2 dimensional space, however, each tree topology space lies in a (N-2) dimensional space. Hence, for N=4 (resp. N=5) leaves, the plots are 2-dimensional (resp. 3-dimensional).
+* `phylogenetic_frechet_set_plots.py`: Contains plotting functions to visualize the relaxed Fréchet means set of equidistant phylogenetic trees. In particular `compare_relaxed_and_unrelaxed_frechet_sets` compares unrelaxed and adaptively-relaxed Fréchet means set estimators by plotting their intersection on each represented topology space. We recall that for N leaves, the distance matrix lies in a N*(N-1)/2 dimensional space, however, each tree topology space lies in a (N-2) dimensional space. Hence, for N=4 (resp. N=5) leaves, the plots are 2-dimensional (resp. 3-dimensional).
 * `figure_i.py` for i in {2,3,4}: Contains the code to plot Figure i from the paper.
 
 For each figure, the plot can be generated by running (e.g. Figure 2)
@@ -50,7 +50,7 @@ py figure_2.py
 ```
 
 ### BibTex
-If you find this Fréchet mean set estimatation implementation useful in your research, please consider citing the following paper.
+If you find this Fréchet-mean-set-estimation implementation useful in your research, please consider citing the following paper.
 
 ```
 @article{blanchard2022fr,
