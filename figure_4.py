@@ -106,10 +106,8 @@ def plot_figure_4(seed, Newick_file, N, nb_samples, height=50):
         if topology_present_unrelaxed:
             topos_unrelaxed += [topology]
             vertices_unrelaxed = keep_extreme_points(vertices_unrelaxed)
-            print('unrelaxed frechet mean set -- nb of vertices: ', len(vertices_unrelaxed), ', topology: ', topology)
             random_vertex_no_relax = vertices_unrelaxed[np.random.randint(len(vertices_unrelaxed)),:]
             vertex_samples_unrelaxed += [random_vertex_no_relax]
-            print(random_vertex_no_relax)
 
         vertices_relaxed = intersection_with_topology(N, sample_list, topology, relaxation)
         vertices_relaxed = np.array(list(set(map(tuple,[vertex for vertex in vertices_relaxed]))))
@@ -118,18 +116,10 @@ def plot_figure_4(seed, Newick_file, N, nb_samples, height=50):
         if topology_present_relaxed:
             topos_relaxed += [topology]
             vertices_relaxed = keep_extreme_points(vertices_relaxed)
-            print('relaxed frechet mean set -- nb of vertices: ', len(vertices_relaxed), ', topology: ', topology)
             random_vertex_relax = vertices_relaxed[np.random.randint(len(vertices_relaxed)),:]
             vertex_samples_relaxed += [random_vertex_relax]
-            print(random_vertex_relax)
 
     num_topos = len(topos_relaxed)
-    fig, axs = plt.subplots(1,num_topos)
-    for i in range(num_topos):
-        topology = topos_unrelaxed[i]
-        plot_tree(axs[i], topology, vertex_samples_unrelaxed[i], (0.,0.), height)
-    plt.show()
-
 
     plt.clf()
     fig, ax = plt.subplots(figsize=(2.2, 4.8))
